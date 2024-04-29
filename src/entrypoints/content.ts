@@ -1,6 +1,10 @@
 export default defineContentScript({
-  matches: ['*://*.google.com/*'],
+  matches: ['<all_urls>'],
+  runAt: "document_end",
+
   main() {
-    console.log('Hello content.');
+    const script = document.createElement("script");
+    script.src = browser.runtime.getURL("/injected.js");
+    document.documentElement.appendChild(script);
   },
 });

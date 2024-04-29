@@ -6,7 +6,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className='w-[400px] h-[400px]'> 
+    <div className='w-[800px] h-[568px]'> 
       <h1>WXT + React</h1>
       <div className="card">
         <Button onClick={() => setCount((count) => count + 1)}>
