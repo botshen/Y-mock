@@ -8,8 +8,8 @@ function createRulesRepo(idbPromise: Promise<IDBPDatabase>) {
     async create(rule: Rule): Promise<void> {
       await idb.add('rules', rule)
     },
-    getOne(pathRule: string): Promise<Rule | undefined> {
-      return idb.get('rules', pathRule);
+    getOne(timestamp: number): Promise<Rule | undefined> {
+      return idb.get('rules', timestamp);
     },
     getAll(): Promise<Rule[]> {
       return idb.getAll('rules');
@@ -17,8 +17,8 @@ function createRulesRepo(idbPromise: Promise<IDBPDatabase>) {
     async update(rule: Rule): Promise<void> {
       await idb.put('rules', rule);
     },
-    async delete(rule: Rule): Promise<void> {
-      await idb.delete('rules', rule.pathRule);
+    async delete(timestamp: number): Promise<void> {
+      await idb.delete('rules', timestamp);
     },
   };
 }

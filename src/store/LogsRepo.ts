@@ -17,8 +17,11 @@ function createLogsRepo(idbPromise: Promise<IDBPDatabase>) {
     async update(log: Log): Promise<void> {
       await idb.put('logs', log);
     },
-    async delete(log: Log): Promise<void> {
-      await idb.delete('logs', log.timestamp);
+    async delete(logId: number): Promise<void> {
+      await idb.delete('logs', logId);
+    },
+    async clear(): Promise<void> {
+      await idb.clear('logs');
     },
   };
 }

@@ -1,9 +1,12 @@
 "use client"
 
-import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
+import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { RiAddLargeFill, RiDeleteBinLine, RiSearchLine } from "react-icons/ri"
+import { SlControlPlay } from "react-icons/sl"
+import { Button } from "./button"
 
 const Tabs = TabsPrimitive.Root
 
@@ -11,14 +14,31 @@ const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
 >(({ className, ...props }, ref) => (
-  <TabsPrimitive.List
-    ref={ref}
-    className={cn(
-      "inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground",
-      className
-    )}
-    {...props}
-  />
+  <div className="flex justify-between items-center">
+    <TabsPrimitive.List
+      ref={ref}
+      className={cn(
+        "inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground",
+        className
+      )}
+      {...props}
+    />
+    <div>
+      <Button variant="ghost" size={"icon"}>
+        <RiAddLargeFill size={20} />
+      </Button>
+      <Button variant="ghost" size={"icon"}>
+        <RiSearchLine size={20} />
+      </Button>
+      <Button variant="ghost" size={"icon"}>
+        <SlControlPlay size={20} />
+      </Button>
+      <Button variant="ghost" size={"icon"}>
+        <RiDeleteBinLine size={20} />
+      </Button>
+    </div> 
+  </div>
+
 ))
 TabsList.displayName = TabsPrimitive.List.displayName
 
@@ -52,4 +72,5 @@ const TabsContent = React.forwardRef<
 ))
 TabsContent.displayName = TabsPrimitive.Content.displayName
 
-export { Tabs, TabsList, TabsTrigger, TabsContent }
+export { Tabs, TabsContent, TabsList, TabsTrigger }
+

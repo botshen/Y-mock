@@ -1,6 +1,7 @@
 type Log = {
-  url: string;
+  pathRule: string;
   timestamp: number;
+  timeText: string;
 };
 
 type JSONValue = string | number | boolean | null | { [k: string | number]: JSONValue } | JSONValue[]
@@ -18,6 +19,7 @@ type Resources<T> = {
 }
 
 type Rule = {
+  timestamp: number
   pathRule: string
   Method?: string
   Delay?: string

@@ -1,3 +1,5 @@
+import { getLogsRepo } from "@/store/LogsRepo";
+
 export default defineContentScript({
   matches: ['<all_urls>'],
   runAt: "document_end",
@@ -6,18 +8,19 @@ export default defineContentScript({
     const script = document.createElement("script");
     script.src = browser.runtime.getURL("/injected.js");
     document.documentElement.appendChild(script);
+    const logRepo = getLogsRepo();
+
     window.addEventListener(
       "xxx",
       async (event) => {
         const customEvent = event as CustomEvent
         if (browser.runtime?.id) {
-          console.log('event======', event)
           try {
             if (customEvent.detail) {
-              await sendMessage({
-                type: "ajaxInterceptor",
+              logRepo.create({
+                pathRule: customEvent.detail,
                 timestamp: Date.now(),
-                data: customEvent.detail
+                timeText: new Date().toLocaleString(),
               })
             }
           } catch (error) {
