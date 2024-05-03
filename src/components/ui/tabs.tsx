@@ -1,19 +1,19 @@
-"use client"
-
+ 
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { RiAddLargeFill, RiDeleteBinLine, RiSearchLine } from "react-icons/ri"
-import { SlControlPlay } from "react-icons/sl"
-import { Button } from "./button"
+ 
 
 const Tabs = TabsPrimitive.Root
-
+type TabsListProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & {
+  showButtons?: boolean;
+  onButtonClick?: () => void;
+};
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
->(({ className, ...props }, ref) => (
+  TabsListProps
+>(({ className, showButtons = false, onButtonClick, ...props }, ref) => (
   <div className="flex justify-between items-center">
     <TabsPrimitive.List
       ref={ref}
@@ -22,21 +22,7 @@ const TabsList = React.forwardRef<
         className
       )}
       {...props}
-    />
-    <div>
-      <Button variant="ghost" size={"icon"}>
-        <RiAddLargeFill size={20} />
-      </Button>
-      <Button variant="ghost" size={"icon"}>
-        <RiSearchLine size={20} />
-      </Button>
-      <Button variant="ghost" size={"icon"}>
-        <SlControlPlay size={20} />
-      </Button>
-      <Button variant="ghost" size={"icon"}>
-        <RiDeleteBinLine size={20} />
-      </Button>
-    </div> 
+    />  
   </div>
 
 ))

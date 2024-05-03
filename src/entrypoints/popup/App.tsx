@@ -1,10 +1,10 @@
-import { TabsPage } from './tab';
-
+import { globalRouters } from "@/router";
+import { RouterProvider } from "react-router-dom"
 
 function App() {
   return (
     <div className='w-[800px] h-[568px] p-6'>
-      <TabsPage />
+      <RouterProvider router={globalRouters} />
     </div>
   );
 }
